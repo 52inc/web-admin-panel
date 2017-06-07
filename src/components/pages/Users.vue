@@ -197,6 +197,15 @@ export default {
         },
         {
           value: false,
+          name: 'Lollipop',
+          calories: 392,
+          fat: 0.2,
+          carbs: 98,
+          protein: 0,
+          sodium: 38
+        },
+        {
+          value: false,
           name: 'KitKat',
           calories: 518,
           fat: 26.0,
