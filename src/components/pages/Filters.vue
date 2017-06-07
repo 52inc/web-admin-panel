@@ -1,63 +1,80 @@
 <template>
   <v-container fluid>
     <v-card>
-      <v-card-row class="primary">
-        <v-card-title>
-          <span class="white--text">Add filters</span>
-        </v-card-title>
-      </v-card-row>
-      <v-card-text>
-
-      </v-card-text>
-      <v-divider></v-divider>
-      <v-card-row actions>
-        <v-btn flat class="primary--text">View Email</v-btn>
-      </v-card-row>
+      <v-card-title>
+        Filters
+        <v-spacer></v-spacer>
+        <v-text-field
+          append-icon="search"
+          label="Search"
+          single-line
+          hide-details
+          v-model="search"
+        ></v-text-field>
+      </v-card-title>
+      <v-data-table
+        v-bind:headers="headers"
+        v-bind:items="items"
+        v-bind:search="search"
+      >
+        <template slot="items" scope="props">
+          <td>
+            <v-edit-dialog
+              @open="props.item._name = props.item.name"
+              @cancel="props.item.name = props.item._name || props.item.name"
+              lazy
+            > {{ props.item.name }}
+              <v-text-field
+                slot="input"
+                label="Edit"
+                v-bind:value="props.item.name"
+                v-on:change="val => props.item.name = val"
+                single-line counter="counter"
+              ></v-text-field>
+            </v-edit-dialog>
+          </td>
+          <td class="text-xs-right">{{ props.item.keyword }}</td>
+          <td class="text-xs-right">{{ props.item.action }}</td>
+        </template>
+        <template slot="pageText" scope="{ pageStart, pageStop }">
+          From {{ pageStart }} to {{ pageStop }}
+        </template>
+      </v-data-table>
     </v-card>
-
-    <!-- v-btn floating right class="indigo text-xs-right">
-      <v-icon light>add</v-icon>
-    </v-btn> -->
-
-    <fab
-      :position="position"
-      :bg-color="bgColor"
-      :actions="fabActions"
-      @cache="cache"
-      @alertMe="alert"
-    ></fab>
   </v-container>
 </template>
 
 <script>
-  import fab from 'vue-fab'
-
   export default {
     name: 'Filters',
-    components: {
-      fab
-    },
     data () {
       return {
-        bgColor: '#52A9DB',
-        position: 'bottom-right',
-        fabActions: [
+        search: '',
+        headers: [
           {
-            name: 'cache',
-            icon: 'cached'
+            text: 'Keyword',
+            value: 'keyword',
+            left: true,
           }, {
-            name: 'alertMe',
-            icon: 'add_alert'
+            text: 'Action',
+            value: 'action',
+          },
+        ],
+        items: [
+          {
+            keyword: 'fuck',
+            action: 'notification',
+          }, {
+            keyword: 'shit',
+            action: 'delete',
+          }, {
+            keyword: 'dick',
+            action: 'notification',
+          }, {
+            keyword: 'cunt',
+            action: 'notification',
           }
         ]
-      }
-    },
-    methods: {
-      cache () {
-        console.log('Cache Cleared')
-      },
-      alert () {
-        alert('Clicked on alert icon')
       }
     }
   }

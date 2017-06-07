@@ -31,35 +31,17 @@
                 v-on:change="val => props.item.name = val"
                 single-line counter="counter"
               ></v-text-field>
-            </v-edit-dialog>
-          </td>
-          <td class="text-xs-right">{{ props.item.calories }}</td>
-          <td class="text-xs-right">{{ props.item.fat }}</td>
-          <td class="text-xs-right">{{ props.item.carbs }}</td>
-          <td class="text-xs-right">{{ props.item.protein }}</td>
-          <td class="text-xs-right">{{ props.item.sodium }}</td>
-          <td class="text-xs-right">{{ props.item.calcium }}</td>
-          <td>
-            <v-edit-dialog
-              class="text-xs-right"
-              @open="props.item._iron = props.item.iron"
-              @cancel="props.item.iron = props.item._iron || props.item.iron"
-              large
-              lazy
-            >
-              <div class="text-xs-right">{{ props.item.iron }}</div>
-              <div slot="input" class="mt-3 title">Update Iron</div>
               <v-text-field
                 slot="input"
                 label="Edit"
-                v-bind:value="props.item.iron"
-                v-on:blur="val => props.item.iron = val"
-                single-line
-                counter
-                autofocus
+                v-bind:value="props.item.name"
+                v-on:change="val => props.item.name = val"
+                single-line counter="counter"
               ></v-text-field>
             </v-edit-dialog>
           </td>
+          <td class="text-xs-right">{{ props.item.email }}</td>
+          <td class="text-xs-right">{{ props.item.reports }}</td>
         </template>
         <template slot="pageText" scope="{ pageStart, pageStop }">
           From {{ pageStart }} to {{ pageStop }}
@@ -129,89 +111,34 @@ export default {
       ],
       headers: [
         {
-          text: 'Dessert (100g serving)',
+          text: 'Name',
+          value: 'name',
           left: true,
-          sortable: false,
-          value: 'name'
         },
-        { text: 'Calories', value: 'calories' },
-        { text: 'Fat (g)', value: 'fat' },
-        { text: 'Carbs (g)', value: 'carbs' },
-        { text: 'Protein (g)', value: 'protein' },
-        { text: 'Sodium (mg)', value: 'sodium' }
+        { text: 'Email', value: 'email' },
+        { text: 'Reports', value: 'reports' },
       ],
       items: [
         {
-          value: false,
-          name: 'Frozen Yogurt',
-          calories: 159,
-          fat: 6.0,
-          carbs: 24,
-          protein: 4.0,
-          sodium: 87
-        },
-        {
-          value: false,
-          name: 'Ice cream sandwich',
-          calories: 237,
-          fat: 9.0,
-          carbs: 37,
-          protein: 4.3,
-          sodium: 129
-        },
-        {
-          value: false,
-          name: 'Eclair',
-          calories: 262,
-          fat: 16.0,
-          carbs: 23,
-          protein: 6.0,
-          sodium: 337
-        },
-        {
-          value: false,
-          name: 'Cupcake',
-          calories: 305,
-          fat: 3.7,
-          carbs: 67,
-          protein: 4.3,
-          sodium: 413
-        },
-        {
-          value: false,
-          name: 'Gingerbread',
-          calories: 356,
-          fat: 16.0,
-          carbs: 49,
-          protein: 3.9,
-          sodium: 327
-        },
-        {
-          value: false,
-          name: 'Jelly bean',
-          calories: 375,
-          fat: 0.0,
-          carbs: 94,
-          protein: 0.0,
-          sodium: 50
-        },
-        {
-          value: false,
-          name: 'Lollipop',
-          calories: 392,
-          fat: 0.2,
-          carbs: 98,
-          protein: 0,
-          sodium: 38
-        },
-        {
-          value: false,
-          name: 'KitKat',
-          calories: 518,
-          fat: 26.0,
-          carbs: 65,
-          protein: 7,
-          sodium: 54
+          name: 'test',
+          email: 'test@gmail.com',
+          reports: 3,
+        }, {
+          name: 'tawef',
+          email: 'test@gmail.com',
+          reports: 5,
+        }, {
+          name: 't32t',
+          email: 'test@gmail.com',
+          reports: 1,
+        }, {
+          name: 'tsdfht',
+          email: 'test@gmail.com',
+          reports: 3,
+        }, {
+          name: 'twaet',
+          email: 'test@gmail.com',
+          reports: 4,
         }
       ]
     }

@@ -118,31 +118,31 @@ export default {
         {
           title: 'Dashboard',
           path: '/',
-          icon: 'dashboard'
+          icon: 'dashboard',
         }, {
           title: 'Users',
           path: '/users',
-          icon: 'people'
+          icon: 'people',
         }, {
           title: 'Listings',
           path: '/listings',
-          icon: 'view_list'
+          icon: 'view_list',
         }, {
           title: 'Sponsors',
           path: '/sponsors',
-          icon: 'store'
+          icon: 'store',
         }, {
           title: 'Organizations',
           path: '/organizations',
-          icon: 'folder_shared'
+          icon: 'folder_shared',
         }, {
           title: 'Filters',
           path: '/filters',
-          icon: 'note_add'
-        }
-      ]
+          icon: 'note_add',
+        },
+      ],
     }
-  }
+  },
 }
 </script>
 
@@ -177,8 +177,10 @@ $theme := {
       right: 0
 
 .container
-  max-width: 1000px;
+  max-width: 1200px;
 
+.dialog
+  background-color: white
 </style>
 
 <style lang="stylus" scoped>

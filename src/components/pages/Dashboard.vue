@@ -27,12 +27,12 @@ Vue.component('line-chart', {
         {
           label: 'Data One',
           backgroundColor: '#f87979',
-          data: [40, 39, 10, 40, 39, 80, 40]
-        }
+          data: [40, 39, 10, 40, 39, 80, 40],
+        },
       ]
     }, {
       responsive: true,
-      maintainAspectRatio: false
+      maintainAspectRatio: false,
     })
   }
 })
@@ -41,7 +41,7 @@ export default {
   name: 'Dashboard',
   data () {
     return {
-      message: 'Hello World'
+      message: 'Hello World',
     }
   }
 }
