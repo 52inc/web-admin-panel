@@ -4,6 +4,8 @@ import Dashboard from '@/components/pages/Dashboard'
 import Users from '@/components/pages/Users'
 import Filters from '@/components/pages/Filters'
 import Listings from '@/components/pages/Listings'
+import Organizations from '@/components/pages/Organizations'
+import Sponsors from '@/components/pages/Sponsors'
 
 Vue.use(Router)
 
@@ -25,6 +27,14 @@ export default new Router({
       path: '/listings',
       name: 'Listings',
       component: Listings,
+    }, {
+      path: '/organizations',
+      name: 'Organizations',
+      component: Organizations,
+    }, {
+      path: '/sponsors',
+      name: 'Sponsors',
+      component: Sponsors,
     }
   ],
 })
