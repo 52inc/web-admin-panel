@@ -17,10 +17,13 @@
     "chart.js": "^2.6.0",
     "vue": "^2.3.4",
     "vue-chartjs": "^2.6.4",
+    "vue-class-component": "^5.0.1",
     "vue-fab": "^2.0.4",
     "vue-router": "^2.5.3"
   },
   "devDependencies": {
+    "@types/mocha": "^2.2.41",
+    "@types/sinon-chai": "^2.7.28",
     "autoprefixer": "^6.7.2",
     "babel-core": "^6.22.1",
     "babel-eslint": "^7.1.1",
@@ -78,6 +81,8 @@
     "style-loader": "^0.18.2",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
+    "ts-loader": "^2.1.0",
+    "typescript": "^2.3.4",
     "url-loader": "^0.5.8",
     "vue-loader": "^12.1.0",
     "vue-style-loader": "^3.0.1",

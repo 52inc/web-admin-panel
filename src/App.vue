@@ -101,8 +101,16 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from "vue"
+import Component from 'vue-class-component'
 import BrandLogo from '@/assets/brand_logo.svg'
+
+@Component({
+  props: {
+    propMessage: String
+  }
+})
 
 export default {
   name: 'app',
