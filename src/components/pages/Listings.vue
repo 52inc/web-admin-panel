@@ -13,11 +13,15 @@
         ></v-text-field>
       </v-card-title>
       <v-data-table
-        v-bind:headers="headers"
-        v-bind:items="items"
-        v-bind:search="search"
+        :headers="headers"
+        :items="items"
+        :search="search"
       >
-        <template slot="items" scope="props">
+        <template
+          slot="items"
+          scope="props"
+          @click.native.stop="isListingDialogOpen = !isListingDialogOpen"
+        >
           <td class="text-xs-right">{{ props.item.name }}</td>
           <td class="text-xs-right">{{ props.item.calories }}</td>
           <td class="text-xs-right">{{ props.item.fat }}</td>
@@ -25,27 +29,7 @@
           <td class="text-xs-right">{{ props.item.protein }}</td>
           <td class="text-xs-right">{{ props.item.sodium }}</td>
           <td class="text-xs-right">{{ props.item.calcium }}</td>
-          <td>
-            <v-edit-dialog
-              class="text-xs-right"
-              @open="props.item._iron = props.item.iron"
-              @cancel="props.item.iron = props.item._iron || props.item.iron"
-              large
-              lazy
-            >
-              <div class="text-xs-right">{{ props.item.iron }}</div>
-              <div slot="input" class="mt-3 title">Update Iron</div>
-              <v-text-field
-                slot="input"
-                label="Edit"
-                v-bind:value="props.item.iron"
-                v-on:blur="val => props.item.iron = val"
-                single-line
-                counter
-                autofocus
-              ></v-text-field>
-            </v-edit-dialog>
-          </td>
+          <td class="text-xs-right">{{ props.item.iron }}</td>
         </template>
         <template slot="pageText" scope="{ pageStart, pageStop }">
           From {{ pageStart }} to {{ pageStop }}
@@ -53,53 +37,23 @@
       </v-data-table>
     </v-card>
 
-    <!-- <v-dialog
-      v-model="dialog"
-      :hide-overlay="false"
-    >
-      <v-card>
-        <v-card-row>
-          <v-card-title>Use Google's location service?</v-card-title>
-          </v-card-row>
-          <v-card-row>
-            <v-card-text>Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.</v-card-text>
-          </v-card-row>
-          <v-card-row actions>
-            <v-btn class="green--text darken-1" flat="flat" @click.native="dialog = false">Disagree</v-btn>
-            <v-btn class="green--text darken-1" flat="flat" @click.native="dialog = false">Agree</v-btn>
-          </v-card-row>
-      </v-card>
-
-
-    </v-dialog> -->
-
-    <v-dialog v-model="dialog">
-      <v-btn primary light slot="activator">Open Dialog</v-btn>
-      <v-card>
-        <v-card-row>
-          <v-card-title>Use Google's location service?</v-card-title>
-        </v-card-row>
-        <v-card-row>
-          <v-card-text>
-            Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.
-          </v-card-text>
-        </v-card-row>
-        <v-card-row actions>
-          <v-btn class="green--text darken-1" flat="flat" @click.native="dialog = false">Disagree</v-btn>
-          <v-btn class="green--text darken-1" flat="flat" @click.native="dialog = false">Agree</v-btn>
-        </v-card-row>
-      </v-card>
-    </v-dialog>
+    <v-btn primary light @click.native.stop="isListingDialogOpen = !isListingDialogOpen">Open Dialog</v-btn>
+    <listing-dialog :isListingDialogOpen="isListingDialogOpen" />
   </v-container>
 </template>
 
 <script>
+import ListingDialog from '@/components/dialogs/Listing'
+
 export default {
+  name: 'Listings',
+  components: { ListingDialog },
+  // template:
   data () {
     return {
       search: '',
       pagination: {},
-      dialog: true,
+      isListingDialogOpen: false,
       headers: [
         {
           text: 'Dessert (100g serving)',
@@ -227,6 +181,11 @@ export default {
           iron: '6%'
         }
       ]
+    }
+  },
+  watch: {
+    isListingDialogOpen: (value) => {
+      console.log('Listings', value)
     }
   }
 }
