@@ -1,60 +1,121 @@
 <template>
   <v-container fluid>
-    <v-card>
-      <v-card-title >
-        Dashboard
-        <v-spacer></v-spacer>
+    <v-layout row wrap>
+      <v-flex xs12>
+        <v-card>
+          <v-card-title>
+            Active users
+            <v-spacer></v-spacer>
+            <v-btn
+              icon
+              class="secondary--text"
+              @click.native.stop="isRefreshing = !isRefreshing"
+            >
+              <transition name="rotate">
+                <v-icon :class="{'is-rotating': isRefreshing}">
+                  cached
+                </v-icon>
+              </transition>
+            </v-btn>
+          </v-card-title>
+          <v-divider></v-divider>
+          <v-card-row class="pa-4">
+            <active-users-chart />
+          </v-card-row>
+        </v-card>
+      </v-flex>
 
-        <v-btn
-          icon
-          class="primary--text"
-          @click.native.stop="isRefreshing = !isRefreshing"
-        >
-          <transition name="rotate">
-            <v-icon :class="{'is-rotating': isRefreshing}">
-              cached
-            </v-icon>
-          </transition>
-        </v-btn>
-      </v-card-title>
+      <v-flex xs12 md5>
+        <v-card class="mt-4">
+          <v-card-title>
+            Pageviews by browser
+            <v-spacer></v-spacer>
+            <v-btn
+              icon
+              class="secondary--text"
+              @click.native.stop="isRefreshing = !isRefreshing"
+            >
+              <transition name="rotate">
+                <v-icon :class="{'is-rotating': isRefreshing}">
+                  cached
+                </v-icon>
+              </transition>
+            </v-btn>
+          </v-card-title>
+          <v-divider></v-divider>
+          <v-card-row class="pa-4">
+            <pageviews-chart />
+          </v-card-row>
+        </v-card>
+      </v-flex>
 
-      <v-divider></v-divider>
+      <v-flex xs12 md7>
+        <v-card class="mt-4">
+          <v-card-title>
+            Reports in past month
+            <v-spacer></v-spacer>
+            <v-btn
+              icon
+              class="secondary--text"
+              @click.native.stop="isRefreshing = !isRefreshing"
+            >
+              <transition name="rotate">
+                <v-icon :class="{'is-rotating': isRefreshing}">
+                  cached
+                </v-icon>
+              </transition>
+            </v-btn>
+          </v-card-title>
+          <v-divider></v-divider>
+          <v-card-row class="pa-4">
+            <reports-chart />
+          </v-card-row>
+        </v-card>
+      </v-flex>
 
-      <v-card-row class="pa-4">
-        <line-chart></line-chart>
-      </v-card-row>
-    </v-card>
+      <v-flex xs12>
+        <v-card class="mt-4">
+          <v-card-title>
+            Listings (past month)
+            <v-spacer></v-spacer>
+            <v-btn
+              icon
+              class="secondary--text"
+              @click.native.stop="isRefreshing = !isRefreshing"
+            >
+              <transition name="rotate">
+                <v-icon :class="{'is-rotating': isRefreshing}">
+                  cached
+                </v-icon>
+              </transition>
+            </v-btn>
+          </v-card-title>
+          <v-divider></v-divider>
+          <v-card-row class="pa-4">
+            <listings-chart />
+          </v-card-row>
+        </v-card>
+      </v-flex>
+    </v-layout>
   </v-container>
 </template>
 
 <script>
-import Vue from 'vue'
-import VueChartJs from 'vue-chartjs'
-
-Vue.component('line-chart', {
-  extends: VueChartJs.Line,
-  mounted () {
-    this.renderChart({
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-      datasets: [
-        {
-          label: 'Data One',
-          backgroundColor: '#f87979',
-          data: [40, 39, 10, 40, 39, 80, 40],
-        },
-      ]
-    }, {
-      responsive: true,
-      maintainAspectRatio: false,
-    })
-  }
-})
+import ActiveUsersChart from '@/components/charts/ActiveUsers'
+import ReportsChart from '@/components/charts/Reports'
+import PageviewsChart from '@/components/charts/Pageviews'
+import ListingsChart from '@/components/charts/Listings'
 
 export default {
   name: 'Dashboard',
+  components: {
+    ActiveUsersChart,
+    ReportsChart,
+    PageviewsChart,
+    ListingsChart,
+  },
   data () {
     return {
-      message: 'Hello World',
       isRefreshing: false,
     }
   },

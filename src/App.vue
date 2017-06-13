@@ -152,7 +152,7 @@ export default {
 $theme := {
   primary: #52A9DB
   accent: $red.accent-2
-  secondary: $grey.lighten-1
+  secondary: #2c3e50
   info: $blue.lighten-1
   warning: $amber.darken-2
   error: $red.accent-4
