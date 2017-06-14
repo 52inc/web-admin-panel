@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <v-app id="app">
     <v-navigation-drawer
       width="250px"
       persistent
@@ -98,7 +98,7 @@
     <main>
       <router-view></router-view>
     </main>
-  </div>
+  </v-app>
 </template>
 
 <script>
