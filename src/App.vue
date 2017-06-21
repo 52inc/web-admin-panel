@@ -68,6 +68,40 @@
       </v-list>
     </v-navigation-drawer>
 
+    <v-navigation-drawer
+      temporary
+      right
+      enable-resize-watcher
+      v-model="notificationDrawer"
+    >
+      <v-list dense>
+        <v-list-item>
+          <v-list-tile>
+            <v-list-tile-action>
+              <v-icon class="white--text">notifications</v-icon>
+            </v-list-tile-action>
+            <v-list-tile-content>
+              <v-list-tile-title>
+                Notifications
+              </v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+        </v-list-item>
+
+        <v-divider />
+
+        <v-list-item>
+          <v-list-tile>
+            <v-list-tile-content>
+              <v-list-tile-title>
+                Listings flagged
+              </v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+
     <v-toolbar class="primary" fixed light>
       <v-toolbar-side-icon
         light
@@ -83,7 +117,7 @@
           account_circle
         </v-icon>
       </v-btn>
-      <v-btn icon light>
+      <v-btn icon light @click.native.stop="notificationDrawer = !notificationDrawer">
         <v-icon>
           notifications
         </v-icon>
@@ -114,6 +148,7 @@ export default {
       right: null,
       left: null,
       mini: false,
+      notificationDrawer: false,
       pages: [
         {
           title: 'Dashboard',
